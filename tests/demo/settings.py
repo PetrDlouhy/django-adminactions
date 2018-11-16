@@ -78,12 +78,14 @@ MEDIA_URL = ''
 STATIC_ROOT = os.path.join(here, 'static')
 STATIC_URL = '/static/'
 SECRET_KEY = 'c73*n!y=)tziu^2)y*@5i2^)$8z$tx#b9*_r3i6o1ohxo%*2^a'
-MIDDLEWARE_CLASSES = (
+MIDDLEWARE = (
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',)
+
+MIDDLEWARE_CLASSES = MIDDLEWARE
 
 # MIDDLEWARE_CLASSES = [
 #     'django.middleware.security.SecurityMiddleware',

@@ -237,7 +237,7 @@ class DataFixtureClass(RandomDataFixture):  # it can inherit of SequentialDataFi
 
 TEST_TEMPLATES_DIR = os.path.join(os.path.dirname(__file__),
                                   os.pardir, 'tests', 'templates')
-SETTINGS = {'MIDDLEWARE_CLASSES': global_settings.MIDDLEWARE_CLASSES,
+SETTINGS = {
             'TEMPLATE_DIRS': [TEST_TEMPLATES_DIR],
             'AUTHENTICATION_BACKENDS': ('django.contrib.auth.backends.ModelBackend',),
             'TEMPLATE_LOADERS': ('django.template.loaders.filesystem.Loader',
@@ -251,6 +251,11 @@ SETTINGS = {'MIDDLEWARE_CLASSES': global_settings.MIDDLEWARE_CLASSES,
                                             "django.core.context_processors.request",
                                             "django.core.context_processors.tz",
                                             "django.contrib.messages.context_processors.messages")}
+
+if hasattr(global_settings, 'MIDDLEWARE_CLASSES'):  # Django >= 2.0
+    SETTINGS['MIDDLEWARE_CLASSES'] = global_settings.MIDDLEWARE_CLASSES
+else:
+    SETTINGS['MIDDLEWARE'] = global_settings.MIDDLEWARE
 
 ADMIN = 'sax'
 USER = 'user'
